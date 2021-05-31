@@ -1,0 +1,30 @@
+{
+  "name": "parser",
+  "version": "0.0.1",
+  "description": "A demonstration of TDD and BDD techniques",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rvodden/parser.js.git"
+  },
+  "keywords": [
+    "bdd",
+    "tdd",
+    "testing"
+  ],
+  "author": "Richard Vodden",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rvodden/parser.js/issues"
+  },
+  "homepage": "https://github.com/rvodden/parser.js#readme",
+  "dependencies": {
+    "json": "^11.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  }
+}
