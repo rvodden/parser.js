@@ -1,5 +1,5 @@
 {
-    "name": "parser",
+    "name": "expression-evaluator",
     "version": "0.0.1",
     "description": "",
     "main": "app.js",
@@ -10,18 +10,22 @@
     "author": "",
     "license": "MIT",
     "dependencies": {
+        "axios": "^0.21.1",
         "express": "^4.17.1",
         "express-winston": "^4.1.0",
-        "model": "^0.0.1",
-        "winston": "~3.3.3"
+        "jison": "^0.4.18",
+        "winston": "^3.3.3"
     },
     "devDependencies": {
         "chai": "^4.3.4",
         "chai-http": "^4.3.0",
+        "chai-nock": "^1.3.0",
         "eslint": "^7.28.0",
         "eslint-plugin-mocha": "^9.0.0",
         "eslint-config-google": "^0.14.0",
-        "mocha": "^8.4.0"
+        "mocha": "^8.4.0",
+        "nock": "^13.1.0",
+        "sinon": "^11.1.1"
     },
     "eslintConfig": {
         "plugins": [
@@ -37,8 +41,8 @@
         },
         "env": {
             "es6": true,
-            "node": true,
-            "mocha": true
+            "mocha": true,
+            "node": true
         }
     }
 }

@@ -128,3 +128,9 @@ tmp/
 temp/
 
 # End of https://www.toptal.com/developers/gitignore/api/node
+#
+
+common/deploy/
+common/temp/
+common/autoinstallers/*/.npmrc
+**/.rush/temp/

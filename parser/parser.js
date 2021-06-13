@@ -1,11 +1,22 @@
 // mygenerator.js
-var Parser = require("jison").Parser;
-var fs = require("fs");
+const {Expression, InvalidExpression} = require('model');
 
-var grammar = fs.readFileSync("parser.jison", "utf8");
-var parser = new Parser(grammar);
+/**
+ * Converts a string to an Expression object,
+ *
+ * @param {string} str the string to convert.
+ *
+ * @return {Expression} the parsed expression object.
+ */
+function parse(str) {
+  const num = Number(str);
+  if ( str == '' || isNaN(num) ) {
+    throw new InvalidExpression(`'{str}' is not a number.`);
+  }
+  return new Expression(num);
+}
 
-// generate source, ready to be written to disk
-var parserSource = parser.generate();
-
-exports.parser = parser
+module.exports = exports = {
+  parse: parse,
+  default: parse,
+};

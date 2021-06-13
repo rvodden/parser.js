@@ -1,30 +1,30 @@
 {
-  "name": "parser",
-  "version": "0.0.1",
-  "description": "A demonstration of TDD and BDD techniques",
-  "main": "index.js",
-  "scripts": {
-    "test": "cucumber-js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rvodden/parser.js.git"
-  },
-  "keywords": [
-    "bdd",
-    "tdd",
-    "testing"
-  ],
-  "author": "Richard Vodden",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rvodden/parser.js/issues"
-  },
-  "homepage": "https://github.com/rvodden/parser.js#readme",
-  "dependencies": {
-    "json": "^11.0.0"
-  },
-  "devDependencies": {
-    "concurrently": "^6.2.0"
-  }
+    "name": "parser",
+    "version": "0.0.1",
+    "description": "A demonstration of TDD and BDD techniques",
+    "main": "index.js",
+    "scripts": {
+        "test": "cd parser; rushx test; cd ../calculator; rushx test; cd ../expression-evaluator; rushx test; cd ../test; rushx test",
+        "e2e": "mocha --exit",
+        "start": "concurrently \"cd calculator; PORT=3001 rushx start\" \"cd parser; PORT=3000 rushx start\" \"cd expression-evaluator; PORT=3003 rushx start\" \"cd ui; PORT=3004 npm start\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rvodden/parser.js.git"
+    },
+    "keywords": [
+        "bdd",
+        "tdd",
+        "testing"
+    ],
+    "author": "Richard Vodden",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/rvodden/parser.js/issues"
+    },
+    "homepage": "https://github.com/rvodden/parser.js#readme",
+    "devDependencies": {
+        "@microsoft/rush": "^5.47.0",
+        "concurrently": "^6.2.0"
+    }
 }
