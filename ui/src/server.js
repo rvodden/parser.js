@@ -2,7 +2,7 @@
 // use `npm start` command to launch the server.
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const config = require('../../config/webpack.local.config');
+const config = require('../webpack.config');
 console.log('Starting the dev web server...');
 const port = 8080;
 const path = require('path');
@@ -15,16 +15,16 @@ const options = {
     stats: { colors: true }
 };
 
-const server = new WebpackDevServer(webpack(config), options);
+const app = new WebpackDevServer(webpack(config), options);
 
-server.asyncListen = (port) => {
-  return new Promise((resolve, reject) => {
-    const server = app.listen(port);
-    server.once('listening', () => {
-      resolve(server);
+app.asyncListen = (port) => {
+    return new Promise(function(resolve, reject) {
+        const server = app.listen(port);
+        server.once('listening', () => {
+            resolve(server);
+        });
+        server.once('error', reject);
     });
-    server.once('error', reject);
-  });
 };
 
-module.exports = server;
+module.exports = app;

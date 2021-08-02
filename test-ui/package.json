@@ -16,7 +16,8 @@
         "eslint-config-google": "^0.14.0",
         "mocha": "^8.4.0",
         "puppeteer": "~10.0.0",
-        "test-api": "0.0.1"
+        "test-api": "file:../test-api",
+        "ui": "file:../ui"
     },
     "eslintConfig": {
         "extends": [

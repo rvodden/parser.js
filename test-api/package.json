@@ -9,12 +9,13 @@
     "author": "",
     "license": "MIT",
     "dependencies": {
-        "expression-evaluator": "^0.0.1",
-        "calculator": "^0.0.1",
-        "parser": "^0.0.1",
-        "model": "^0.0.1"
+        "expression-evaluator": "file:../expression-evaluator",
+        "calculator": "file:../calculator",
+        "parser": "file:../parser",
+        "model": "file:../model"
     },
     "devDependencies": {
+        "axios": "^0.21.1",
         "chai": "^4.3.4",
         "chai-http": "^4.3.0",
         "eslint": "^7.28.0",

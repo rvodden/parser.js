@@ -4,6 +4,13 @@ const app = express();
 const winston = require('winston');
 const expressWinston = require('express-winston');
 
+const CalculatorClient = require('./calculator_client');
+const ParserClient = require('./parser_client');
+const ExpressionEvaluator = require('./expression_evaluator');
+
+const parserPath = '/api';
+const calculatorPath = '/api';
+
 expressWinston.requestWhitelist.push('body');
 
 axios.defaults.timeout = 500;
@@ -25,48 +32,43 @@ app.use(
     })
 );
 
+const router = new express.Router();
+
 app.setup = (config) => {
   if (config) {
     app.PARSER_ADDRESS =
       config.parser_address ||
       process.env.PARSER_ADDRESS ||
-      'http://localhost:3000/';
+      'http://localhost:3000';
     app.CALCULATER_ADDRESS =
       config.calculator_address ||
       process.env.CALCULATER_ADDRESS ||
-      'http://localhost:3001/';
+      'http://localhost:3001';
   } else {
     app.PARSER_ADDRESS =
-      process.env.PARSER_ADDRESS || 'http://localhost:3000/';
+      process.env.PARSER_ADDRESS || 'http://localhost:3000';
     app.CALCULATER_ADDRESS =
-      process.env.CALCULATER_ADDRESS || 'http://localhost:3001/';
+      process.env.CALCULATER_ADDRESS || 'http://localhost:3001';
   }
   app.PORT = process.env.PORT || 0;
+  router.expressionEvaluator = new ExpressionEvaluator(
+      new ParserClient(app.PARSER_ADDRESS + parserPath),
+      new CalculatorClient(app.CALCULATER_ADDRESS + calculatorPath)
+  );
 };
-
-const router = new express.Router();
-const parserPath = '/api';
-const calculatorPath = '/api';
 
 
 router.post('/', (req, res, next) => {
-  return axios
-      .post(app.PARSER_ADDRESS + parserPath, req.body)
-      .then((response) => {
-        return axios
-            .post(app.CALCULATER_ADDRESS + calculatorPath, response.data)
-            .then((response) => {
-              res.json(response.data);
-            });
-      })
-      .catch((error) => {
-        if ( error.response ) { // upstream error
-          res.status(error.response.status);
-          res.json(error.response.data);
-        } else { // something else
-          next(error);
-        }
-      });
+  return router.expressionEvaluator.evaluate(req.body).then((result) => {
+    res.json(result);
+  }).catch((error) => {
+    if ( error.response ) { // upstream error
+      res.status(error.response.status);
+      res.json(error.response.data);
+    } else { // something else
+      next(error);
+    }
+  });
 });
 
 app.use('/api', router);
@@ -97,7 +99,7 @@ app.asyncListen = (port, config) => {
   });
 };
 
-if (require.main == module) {
+if (require.main === module) {
   app.setup();
   const server = app.listen(app.PORT, () => {
     console.log(

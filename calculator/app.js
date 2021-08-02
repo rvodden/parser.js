@@ -62,7 +62,7 @@ app.asyncListen = (port) => {
   });
 };
 
-if (require.main == module) {
+if (require.main === module) {
   const server = app.listen(port);
   server.once('listening', () => {
     console.log(

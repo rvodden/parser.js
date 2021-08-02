@@ -388,14 +388,14 @@
    */
   "projects": [
      {
-       "packageName": "parser",
-       "projectFolder": "parser",
-       "reviewCategory": "production"
-     },
-     {
          "packageName": "model",
          "projectFolder": "model",
          "reviewCategory": "production"
+     },
+     {
+       "packageName": "parser",
+       "projectFolder": "parser",
+       "reviewCategory": "production"
      },
      {   "packageName": "calculator",
         "projectFolder": "calculator",

@@ -26,7 +26,7 @@ class Result {
 }
 
 
-module.exports = exports = {
+module.exports = {
   InvalidExpression: InvalidExpression,
   Expression: Expression,
   Result: Result,

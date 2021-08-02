@@ -8,7 +8,7 @@ const expressionEvaluator = require('expression-evaluator');
  * @return {Promise} A promise to set up all the applications.
  */
 function setupApps() {
-  console.log('Setting up applications');
+  console.log('Setting up applications.');
   return Promise.all(
       [calculator.asyncListen(0),
         parser.asyncListen(0)]
@@ -41,7 +41,7 @@ function setupApps() {
  * have been completed.
  */
 function teardownApps() {
-  console.log('Tearing down applications');
+  console.log('Tearing down applications.');
   this.expressionEvaluatorServer.close();
   this.calculatorServer.close();
   this.parserServer.close();
