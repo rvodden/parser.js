@@ -10,7 +10,7 @@ const {Expression, InvalidExpression} = require('model');
  */
 function parse(str) {
   const num = Number(str);
-  if ( str == '' || isNaN(num) ) {
+  if ( str === '' || isNaN(num) ) {
     throw new InvalidExpression(`'{str}' is not a number.`);
   }
   return new Expression(num);
